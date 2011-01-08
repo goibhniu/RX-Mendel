@@ -1,0 +1,80 @@
+<html>
+<h1>Supported G-Codes<h1>
+<table border=1>
+
+<tr>
+<th> Letter
+</th><th> Meaning
+</th></tr>
+<tr>
+<td> Gnnn
+</td><td> Standard GCode command, such as move to a point
+</td></tr>
+<tr>
+<td> Mnnn
+
+</td><td> RepRap-defined command, such as turn on a cooling fan
+</td></tr>
+<tr>
+<td> Tnnn
+</td><td> Select tool nnn.  In this controller, the first [M115 EXTRUDER_COUNT:]tools are extruders
+</td></tr>
+<tr>
+<td> Snnn
+</td><td> Command parameter, such as the voltage to send to a motor
+</td></tr>
+<tr>
+<td> Pnnn
+
+</td><td> Command parameter, such as a time in milliseconds
+</td></tr>
+<tr>
+<td> Xnnn
+</td><td> An X coordinate, usually to move to
+</td></tr>
+<tr>
+<td> Ynnn
+</td><td> A Y coordinate, usually to move to
+</td></tr>
+<tr>
+<td> Znnn
+
+</td><td> A Z coordinate, usually to move to
+</td></tr>
+<tr>
+<td> Innn
+</td><td> Parameter - not currently used
+</td></tr>
+<tr>
+<td> Jnnn
+</td><td> Parameter - not currently used
+</td></tr>
+<tr>
+<td> Fnnn
+
+</td><td> Feedrate in units per minute.
+</td></tr>
+<tr>
+<td> Rnnn
+</td><td> Parameter - not currently used
+</td></tr>
+<tr>
+<td> Qnnn
+</td><td> Parameter - not currently used
+</td></tr>
+<tr>
+<td> Ennn
+
+</td><td> Length of extrudate in mm.  This is exactly like X, Y and Z, but for the length of filament to extrude.
+</td></tr>
+<tr>
+<td> Nnnn
+</td><td> Line number.  Used to request repeat transmission in the case of communications errors.
+</td></tr>
+<tr>
+<td> *nnn
+</td><td> Checksum.  Used to check for communications errors.
+</td></tr>
+</table>
+
+</html>

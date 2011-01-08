@@ -20,17 +20,25 @@
  */
 
 
-#ifndef _SERIAL_H_
+#ifndef _VECTORS_H_
 #ifdef __cplusplus
 extern "C" {
 #endif
-#define _SERIAL_H_
+#define _VECTORS_H_
+
+typedef struct{
+	double X;
+	double Y;
+	double Z;
+	double A;
+	double B;
+	double C;
+	double E;
+} sfVector;
 
 
-
-int checksum(char *);
 
 #ifdef __cplusplus
  }
 #endif
-#endif /* _SERIAL_H_ */
+#endif /* _VECTORS_H_ */

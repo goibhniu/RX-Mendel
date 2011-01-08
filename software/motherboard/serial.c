@@ -1,5 +1,5 @@
 /*
- *   RX-Mendel Reprap printer controller - G Code Interpreter
+ *   RX-Mendel Reprap printer controller - Serial Interface Handler
  *    Copyright (C) 2011  Larry W Housner <gobhain@gsarmail.com>
  *
  *   This program is free software: you can redistribute it and/or modify
@@ -20,17 +20,39 @@
  */
 
 
-#ifndef _SERIAL_H_
-#ifdef __cplusplus
-extern "C" {
-#endif
-#define _SERIAL_H_
+/* Includes */
+
+#include "serial.h"
+#include "gcode.h"
+
+/*
+ * checksum
+ * returns GOOD_CHECKSUM on successful matching of submitted line
+ * to checksum value
+ *
+ * this code was derived from the code available at:
+ * 		http://reprap.org/wiki/GCodes#N_and_.2A
+ *
+ */
 
 
+int checksum (char *buffer)
+{
+	int cs = 0;
+	int i,j;
+	unsigned char tmp[8];
+	for(i = 0; buffer[i] != CHECKSUM && buffer[i] != NULL; i++)
+		cs = cs ^ cmd[i];
+	cs &= 0xff;
+    if(buffer[i] == CHECKSUM)
+    {
+    	for(j = 0; buffer[i+j+1] != NULL; j++)
+    		   tmp[j] = buffer[i+j+1];
+    	if( cs == atoi(tmp))
+    	{
+    		return GOOD_CHECKSUM;
+    	}
+    }
+    return BAD_CHECKSUM;
 
-int checksum(char *);
-
-#ifdef __cplusplus
- }
-#endif
-#endif /* _SERIAL_H_ */
+}

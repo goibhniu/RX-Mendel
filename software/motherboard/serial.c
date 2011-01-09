@@ -35,18 +35,20 @@
  *
  */
 
+xSemaphoreHandle xSemSerialCommandAvailable;
+
 
 int checksum (char *buffer)
 {
 	int cs = 0;
 	int i,j;
 	unsigned char tmp[8];
-	for(i = 0; buffer[i] != CHECKSUM && buffer[i] != NULL; i++)
-		cs = cs ^ cmd[i];
+	for(i = 0; buffer[i] != CHECKSUM && buffer[i] != 0; i++)
+		cs = cs ^ buffer[i];
 	cs &= 0xff;
     if(buffer[i] == CHECKSUM)
     {
-    	for(j = 0; buffer[i+j+1] != NULL; j++)
+    	for(j = 0; buffer[i+j+1] != 0; j++)
     		   tmp[j] = buffer[i+j+1];
     	if( cs == atoi(tmp))
     	{
@@ -56,3 +58,6 @@ int checksum (char *buffer)
     return BAD_CHECKSUM;
 
 }
+
+
+

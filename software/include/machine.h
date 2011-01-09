@@ -30,11 +30,11 @@ extern "C" {
  * Public definitions
  */
 
-#define REPRAP_DARWIN		0
-#define REPRAP_MENDEL		1
-#define MAKERBOT			2
-#define 3_AXIS_CNC_STEPPER 	3
-#define 3_AXIS_CNC_SERVO	4
+#define REPRAP_DARWIN			0
+#define REPRAP_MENDEL			1
+#define MAKERBOT				2
+#define MULTI_AXIS_CNC_STEPPER 	3
+#define MULTI_AXIS_CNC_SERVO	4
 
 /*
  * Public types
@@ -55,7 +55,24 @@ typedef struct{
     double			steps_per_degree_a;
     double			steps_per_degree_b;
     double			steps_per_degree_c;
+    unsigned char	tool_changer_type;
 } Machine;
+
+typedef struct {
+	unsigned char 	extruder_num;
+	unsigned char 	thermistor_table;
+	double 			max_temp;
+	double			current_temp;
+	double			steps_per_mm;
+	unsigned char	material_sensor_type;
+	double			material_remaining;
+} Extruder;
+
+int load_machine(Machine *);
+int load_extruder(Extruder *, int);
+int home_axis(int);
+int intialize_extruder(int);
+int BoardInitialize();
 
 #ifdef __cplusplus
  }
